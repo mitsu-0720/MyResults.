@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user) #チェックボックスにチェックがあればrememberメソッドを有効にする
-      redirect_to @user
+      redirect_back_or @user
+      # redirect_to @user
     else
       # エラーメッセージを作成する
       flash.now[:danger] = 'ログインに失敗しました'
